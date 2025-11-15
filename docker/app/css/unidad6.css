@@ -1,0 +1,124 @@
+
+html {
+    font-size: 1.5rem;
+}
+
+body {
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #f2f4f8;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+header {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: white;
+    text-align: center;
+    padding: 2em 1em;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.info {
+    text-align: center;
+    padding: 2em 1em;
+    margin: 0 auto;
+}
+
+.speakers {
+    background-color: white;
+    padding: 2em 1em;
+
+}
+
+.speakers h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+.speakers-list {
+    margin: 2em auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*
+.speakers-list > .speaker {
+    color: orange;  
+}
+    */
+.speaker {
+    background-color: #e9f2ff;
+    padding: 1.5em;
+    border-radius: 5px;
+    width: 20%;
+}
+
+h3~p {
+    color: orange;
+}
+
+h3+p {
+    color: blue;
+}
+
+
+.register {
+    text-align: center;
+    padding: 3em 1em;
+    background-color: #007bff;
+    color: white;
+}
+
+.register button {
+    background-color: white;
+    color: #007bff;
+    font-size: 0.5rem;
+    padding: 0.8em 2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    font-size: 0.9rem;
+}
+
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 24px;
+    justify-content: space-around;
+
+    input {
+        margin:10px;
+    }
+}
+
+.actividades {
+    margin: 20px;
+}
+
+.error {
+    border-color: red;
+}
+
+.exito {
+    border-color: green;
+}
+
+.neutral {
+    border-color: black;
+}

@@ -19,21 +19,20 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
 
-    $tareas = $result->fetch_all(MYSQLI_ASSOC);
-    print_r($tareas);
+    $tareas = $result->fetch_all(MYSQLI_ASSOC); 
     echo "<br>";
     foreach ($tareas as $tarea) {
-        echo $tarea["descripcion"] . "-" . $tarea["activo"] . "<br>";
+        //print_r($tarea);
+        echo $tarea["descripcion"] . "-" . $tarea["id"] . "<br>";
     }
 } else {
 
     echo "No hay datos en la tabla tareas<br>";
 }
 
-
 //insert  - Create
 /*
-$sql = "INSERT INTO tareas (descripcion, activo) VALUES ('Nueva tarea', 1)";
+$sql = "INSERT INTO tareas (descripcion) VALUES ('Nueva tarea del lunes')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Se registro correctamente! <br>";
@@ -42,7 +41,7 @@ if ($conn->query($sql) === TRUE) {
 }
 */
 
-$sql = "update tareas set descripcion = 'Nuevo dato de tarea' where id = 2";
+$sql = "update tareas set descripcion = 'Cambio de tarea lunes' where id = 7";
 
 if ($conn->query($sql) === TRUE) {
     echo "Se actualizo correctamente! <br>";
@@ -50,7 +49,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Hubo un error al actualizar <br>";
 }
 
-$sql = "delete from tareas  where id = 1";
+$sql = "delete from tareas  where id = 5";
 
 if ($conn->query($sql) === TRUE) {
     echo "Se elimino correctamente! <br>";
@@ -63,7 +62,9 @@ if ($conn->query($sql) === TRUE) {
 $clave = "123456";
 $hash = password_hash($clave, PASSWORD_BCRYPT);
 //echo $hash;
-$hash = '$2y$10$fozjohU2sRqly60VqUFjA.XHdqV0WLsWSyQTB72QBNzUw90ARjwaG';
+
+
+$hash = '$2y$10$vCO4Ozl1aeP6y7fqqHT3GOaCOR15zh0oiz5YDlB4h/uYV91m1y0Cm';
 
 if (password_verify($clave, $hash)) {
     echo "Si es correcta la clave";
