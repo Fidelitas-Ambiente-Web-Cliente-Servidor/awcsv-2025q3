@@ -21,9 +21,6 @@ $(function () {
 
     }
 
-    addTaskBtn.addEventListener("click", () => {
-
-    });
 
     taskList.addEventListener("click", event => {
         
