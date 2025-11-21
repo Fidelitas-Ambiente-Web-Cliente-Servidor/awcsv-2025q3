@@ -1,62 +1,61 @@
-/*
-document.getElementById("titulo").innerText = "Unidad 3";
-$("#titulo"); //id
-$(".clase"); // class
-$("p"); // etiqueta
-$("ul > li"); // padre
-$("p, #titulo, .clase"); // multiple elementos
-*/
 $(function () {
+    //let titulo = document.getElementById("titulo");
     $("#mensaje").hide();
-    console.log(document.getElementById("titulo"));
+    let selectorId = $("#titulo");
+    $("header").prepend("<h4>Subtitulo</h4>");
+    let selectoClase = $(".actividades");
+    let selectorEtiqueta = $("p");
+    let selectorHijosUL = $("ul > li");
+    let selectorMultiselector = $("p , .formulario, #actividad");
+    console.log(selectorId);
+    console.log(selectoClase);
+    console.log(selectorEtiqueta);
+    console.log(selectorHijosUL);
+    console.log(selectorMultiselector);
+
+    $("li").css("color", "red");
+
     $("#titulo").text("Nuevo titulo");
     $("p").html("<h3>Nuevo P con h3</h3>");
-    $("li").css("color", "red");
-    $("a").attr("href", "https://fidelitasvirtual.org");
 
-    $(".formulario").prepend("<h2>Registrese</h2>");
+    $("a").attr("href", "https://api.jquery.com/ready/");
 
-    console.log($("#titulo"));
-    console.log($("input"));
-
-    console.log($("input, h1"));
-    console.log($("ul > li"));
-
-    $("#logo").on("mouseover", function () {
-        $("#logo").attr("src", "./img/logo-jquery.png");
-    })
-
-
-    $("#logo").on("mouseleave", function () {
-        $("#logo").attr("src", "./img/fidelitas.png");
-    })
 
     $("#agregarActividades").on("click", function () {
         let actividad = $("#actividad").val();
         if (actividad != "") {
             $("#mensaje").hide();
             $("#actividad").val("");
-            $("#actividad").addClass("neutral");
             $("#actividad").removeClass("error");
-            $("#listaActividades").prepend("<li>" + actividad + "</li>")
+            $("#listaActividades").append("<li>" + actividad + "</li>")
         } else {
             $("#mensaje").show();
             $("#actividad").addClass("error");
-            $("#actividad").removeClass("neutral");
         }
-        console.log(actividad);
     });
+
+    $("#logo").on("mouseover", function () {
+        $("#logo").attr("src", "./img/logo-jquery.png");
+    });
+    $("#logo").on("mouseleave", function () {
+        $("#logo").attr("src", "./img/fidelitas.png");
+    })
+
 
     $("#ocultar").on("click", function () {
         $("#cuadrado").fadeOut(1000);
     })
 
-    $("#cambiarColor").on("click", function () {
-        $("#cuadrado").toggleClass("rosado");
-    })
-
     $("#mostrar").on("click", function () {
         $("#cuadrado").fadeIn(1000);
+    })
+
+    $("#disminuir").on("click", function () {
+        $("#cuadrado").animate({
+            width: '100px',
+            height: '100px',
+            opacity: 0.5
+        });
     })
 
     $("#agrandar").on("click", function () {
@@ -67,21 +66,8 @@ $(function () {
         });
     })
 
-    $("#disminuir").on("click", function () {
-        $("#cuadrado").animate({
-            width: '100px',
-            height: '100px',
-            opacity: 0.5
-        });
+    $("#cambiarColor").on("click", function () {
+        $("#cuadrado").toggleClass("rosado");
     })
 });
-
-
-
-
-
-
-
-
-
 
