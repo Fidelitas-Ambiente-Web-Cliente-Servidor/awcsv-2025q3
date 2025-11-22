@@ -2,7 +2,7 @@ $(function () {
     //let titulo = document.getElementById("titulo");
     $("#mensaje").hide();
     let selectorId = $("#titulo");
-    $("header").prepend("<h4>Subtitulo</h4>");
+    $("main").prepend("<h4>Lista tareas</h4>");
     let selectoClase = $(".actividades");
     let selectorEtiqueta = $("p");
     let selectorHijosUL = $("ul > li");
@@ -13,7 +13,7 @@ $(function () {
     console.log(selectorHijosUL);
     console.log(selectorMultiselector);
 
-    $("li").css("color", "red");
+    $("p").css("color", "red");
 
     $("#titulo").text("Nuevo titulo");
     $("p").html("<h3>Nuevo P con h3</h3>");
