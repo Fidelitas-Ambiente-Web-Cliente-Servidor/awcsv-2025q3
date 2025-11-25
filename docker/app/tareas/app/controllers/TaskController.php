@@ -7,36 +7,30 @@ $taskModel = new Task($conn);
 header('Content-Type: application/json');
 
 try {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // $data = json_decode(file_get_contents("php://input"), true);
-        $data = $_POST;
 
-        $action = $data['action'] ?? '';
+    // $data = json_decode(file_get_contents("php://input"), true);
+    $data = $_POST;
 
-        if ($action === 'add' && !empty($data['tarea'])) {
-            $taskModel->add($data['tarea']);
-            header("Location: ../../index.php");
-        } else {
-            throw new Exception("Acción no válida o parámetros incorrectos.");
-        }
-    } else {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            // $data = json_decode(file_get_contents("php://input"), true);
-            $data = $_GET;
+    $action = $data['action'] ?? '';
 
-            $action = $data['action'] ?? '';
-
-            if ($action === 'delete' && !empty($data['id'])) {
-                $taskModel->delete($data['id']);
-            } elseif ($action === 'completed' && !empty($data['id'])) {
-                $taskModel->complete($data['id']);
-            } else {
-                throw new Exception("Acción no válida o parámetros incorrectos.");
-            }
-            header("Location: ../../index.php");
-        } else {
+    switch ($action) {
+        case 'all':
             echo json_encode($taskModel->getAll());
-        }
+            break;
+        case 'add':
+            $taskModel->add($data['tarea']);
+            echo json_encode(["response" => 1]);
+            break;
+        case 'delete':
+            $taskModel->delete($data['id']);
+            echo json_encode(["response" => 1]);
+            break;
+        case 'completed':
+            $taskModel->complete($data['id']);
+            echo json_encode(["response" => 1]);
+            break;
+        default:
+            echo json_encode(["response" => 0, "message" => "Acción no válida o parámetros incorrectos."]);
     }
 } catch (Exception $e) {
     echo json_encode(["error" => $e->getMessage()]);
