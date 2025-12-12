@@ -7,7 +7,21 @@ $(function () {
             alert("Campos de usuario y clave son requeridos.");
             return false;
         }
-        $("#formLogin").submit();
+
+        $.post("app/controllers/UserController.php",
+            {
+                username: username,
+                password: password,
+                action: "login"
+            },
+            function (data, status) {
+                if (data.response == "1") {
+                    window.location = "index.php"
+                } else {
+                    alert("Error de sesion")
+                }
+            });
+
     })
 
 });

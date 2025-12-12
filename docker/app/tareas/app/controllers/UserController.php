@@ -14,34 +14,34 @@ try {
 
         $action = $data['action'] ?? '';
 
-        if ($action === 'login' && !empty($data['username']) && !empty($data['password'])) {
-            $user = $userModel->login($data['username']);
-            if (!empty($user) && password_verify($data["password"], $user[0]["clave"])) {
-                $_SESSION["usuario"] = $data['username'];
-                $_SESSION["id"] = $user[0]['id'];
-                $_SESSION["rol"] = $user[0]['rol'];
-                header("Location: ../../index.php");
-            } else {
-                echo "Error de autentificacion";
-                session_destroy();
-            }
-        } else {
-            throw new Exception("Acción no válida o parámetros incorrectos.");
-        }
+        switch ($action) {
+            case 'login':
+                $user = $userModel->login($data['username']);
 
-        if ($action === 'register' && !empty($data['username']) && !empty($data['password'])) {
-            $user = $userModel->login($data['username']);
-            if (!empty($user) && password_verify($data["password"], $user[0]["clave"])) {
-                $_SESSION["usuario"] = $data['username'];
-                $_SESSION["id"] = $user[0]['id'];
-                $_SESSION["rol"] = $user[0]['rol'];
-                header("Location: ../../index.php");
-            } else {
-                echo "Error de autentificacion";
-                session_destroy();
-            }
-        } else {
-            throw new Exception("Acción no válida o parámetros incorrectos.");
+                if (!empty($user) && password_verify($data["password"], $user[0]["clave"])) {
+                    $_SESSION["usuario"] = $data['username'];
+                    $_SESSION["id"] = $user[0]['id'];
+                    $_SESSION["rol"] = $user[0]['rol'];
+                    echo json_encode(["response" => 1]);
+                } else {
+                    echo "Error de autentificacion";
+                    session_destroy();
+                    echo json_encode(["response" => 0]);
+                }
+                break;
+            case 'register':
+                $user = $userModel->login($data['username']);
+                if (!empty($user) && password_verify($data["password"], $user[0]["clave"])) {
+                    $_SESSION["usuario"] = $data['username'];
+                    $_SESSION["id"] = $user[0]['id'];
+                    $_SESSION["rol"] = $user[0]['rol'];
+                    echo json_encode(["response" => 1]);
+                } else {
+                    echo "Error de autentificacion";
+                    session_destroy();
+                    echo json_encode(["response" => 0]);
+                }
+                break;
         }
     }
 } catch (Exception $e) {
